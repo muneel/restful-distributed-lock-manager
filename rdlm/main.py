@@ -12,6 +12,7 @@ import functools
 import logging
 import signal
 import time
+import os.path
 
 from rdlm.options import Options
 from rdlm.hello_handler import HelloHandler
@@ -20,6 +21,10 @@ from rdlm.lock_handler import LockHandler
 from rdlm.resource_handler import ResourceHandler
 from rdlm.resources_handler import ResourcesHandler
 from rdlm.lock import LOCK_MANAGER_INSTANCE
+from rdlm.hello_handler import AddResourceHandler
+from rdlm.hello_handler import ShowAllResourcesHandler
+from rdlm.hello_handler import ShowResourceHandler
+from rdlm.hello_handler import RemoveResourceHandler
 
 
 def on_every_second():
@@ -38,13 +43,21 @@ def get_app():
     @result: the tornado application
     '''
     url_list = [
-        tornado.web.URLSpec(r"/", HelloHandler, name="hello"),
+        tornado.web.URLSpec(r"/", HelloHandler, name="index"),
         tornado.web.URLSpec(r"/resources/([a-zA-Z0-9]+)", ResourceHandler, name="resource"),
         tornado.web.URLSpec(r"/resources", ResourcesHandler, name="resources"),
         tornado.web.URLSpec(r"/locks/([a-zA-Z0-9]+)", LocksHandler, name="locks"),
-        tornado.web.URLSpec(r"/locks/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)", LockHandler, name="lock")
+        tornado.web.URLSpec(r"/locks/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)", LockHandler, name="lock"),
+        tornado.web.URLSpec(r"/addresource", AddResourceHandler, name="addresources"),
+        tornado.web.URLSpec(r"/showallresources", ShowAllResourcesHandler, name="showallresources"),
+        tornado.web.URLSpec(r"/showresource/([a-zA-Z0-9]+)", ShowResourceHandler, name="showresource"),
+        tornado.web.URLSpec(r"/removeresource", RemoveResourceHandler, name="removeresource")
     ]
-    application = tornado.web.Application(url_list)
+    settings = dict(
+        template_path = os.path.join(os.path.dirname(__file__), "templates"),
+        static_path=os.path.join(os.path.dirname(__file__), "static")
+    )
+    application = tornado.web.Application(url_list, **settings)
     return application
 
 

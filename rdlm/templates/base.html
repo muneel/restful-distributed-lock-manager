@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Restful-Distributed Panel</title><meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ static_url("template.css") }}" type="text/css"/>
+    </head>
+    <body>
+        <div class = "center">
+            <h1>Restful-Distributed-Lock-Manager Panel</h1>
+        </div>
+        <div id="main">
+            <br>
+            <a href="/removeresource"><div id="d3"><span>Remove Resource</span></div></a>
+            <a href="/showallresources"><div id="d2"><span>Show Resources</span></div></a>
+            <a href="/addresource"><div id="d1"><span>Add Resource</span></div></a>
+        </div>
+        <div>{% block body %}{% end %}</div>
+        <br>
+   </body>
+ </html>

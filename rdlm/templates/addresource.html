@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div id="tableid">
+	<form method="post">
+		<table class= "center " border="1">
+			<h2>Add Resource</h2>
+			<tr>
+				<th>Resource Name</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="resource"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input class="button" type="submit" value="ADD"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+{% end %}

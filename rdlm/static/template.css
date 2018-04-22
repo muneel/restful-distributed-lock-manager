@@ -1,0 +1,175 @@
+body {
+  background: white;
+  color: #243D7F;
+  margin: 15px;
+  margin: 10px;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+#tableid {
+  margin-top: 75px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  min-width: 25%;
+}
+
+table a {
+  text-decoration: none;
+  color: #243D7F;
+}
+
+table a:visited {
+  color: #243D7F;
+}
+
+#tableid h2 {
+  text-align: center;
+}
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+th {
+  height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even):hover {
+  background-color: #ddd;
+}
+
+form {
+  margin: auto;
+  text-align: center;
+}
+
+form h3 {
+  padding-top: 10px;
+}
+
+#main {
+  margin: auto;
+  width: 666px;
+  height: 240px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#main > div {
+  float: right;
+  margin: 10px;
+}
+
+#main a {
+  text-decoration: none;
+  display: inline;
+  float: right;
+  margin: 10px;
+}
+
+#d1 {
+  width: 200px;
+  height: 200px;
+  background-color: #428bca;
+  color: white;
+  display: table;
+}
+
+#d1:hover {
+  background-color: #aaa;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+}
+
+#d2 {
+  width: 200px;
+  height: 200px;
+  background-color: #428bca;
+  color: white;
+  display: table;
+}
+
+#d2:hover {
+  background-color: #aaa;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+}
+
+#d3 {
+  width: 200px;
+  height: 200px;
+  background-color: #428bca;
+  color: white;
+  display: table;
+}
+
+#d3:hover {
+  background-color: #aaa;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+}
+
+#d1 span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#d2 span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#d3 span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.button {
+  background-color: #428bca;
+  border: none;
+  color: white;
+  padding: 12px 75px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+input[type=text] {
+  font-size: 18px;
+}
+
+.button:hover {
+  background-color: #aaa;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+}

@@ -4,7 +4,11 @@
 # This file is part of restful-distributed-lock-manager released under the MIT license.
 # See the LICENSE file for more information.
 
-from rdlm.request_handler import RequestHandler
+from rdlm.request_handler import RequestHandler, admin_authenticated
+from rdlm.lock import LOCK_MANAGER_INSTANCE
+from resource_file_operations import FILE_OPERATIONS
+from conf_reader import CONF_READER
+import logging
 
 
 class HelloHandler(RequestHandler):
@@ -14,4 +18,94 @@ class HelloHandler(RequestHandler):
         '''
         @summary: deals with GET request on /
         '''
-        self.write('Welcome on restful-distributed-lock-manager !')
+        # self.write('<title>Hello</title> - This is me !')
+        self.render("index.html")
+
+
+class AddResourceHandler(RequestHandler):
+    """Class which handles the / URL"""
+
+    def get(self):
+        '''
+        @summary: deals with GET request on /add
+        '''
+        self.render("addresource.html")
+
+    def post(self):
+        '''
+        @summary: deals with POST for adding a resource
+        '''
+        resource = self.get_argument('resource')
+        FILE_OPERATIONS.add_resource(resource)
+        self.render("success.html", name=resource, operation="added")
+        logging.info("Resource - %s - Added " % resource)
+
+
+class ShowAllResourcesHandler(RequestHandler):
+    """Class which handles the / URL"""
+
+    def get(self):
+        '''
+        @summary: deals with GET request on /showallresource
+        '''
+        resources = {}
+        total_resources = self.__get_resources_list()
+        for resource_name in total_resources:
+            tmp = LOCK_MANAGER_INSTANCE.get_resource_as_dict(resource_name)
+            if tmp is not None:
+                if len(tmp.get('locks')) > 0:
+                    resources.update({resource_name: "Locked"})
+                else:
+                    resources.update({resource_name: ""})
+            else:
+                resources.update({resource_name: ""})
+        logging.debug("Current Resources - %s" % resources)
+        self.render("showallresources.html", resources=resources)
+
+    def __get_resources_list(self):
+        '''
+        @summary: returns resources list
+        '''
+        if CONF_READER.VALIDATE_RESOURCE is True:
+            in_file_resources = FILE_OPERATIONS.get_resources()
+            return in_file_resources
+        else:
+            in_file_resources = FILE_OPERATIONS.get_resources()
+            mem_resources = LOCK_MANAGER_INSTANCE.get_resources_names()
+            return in_file_resources + list(set(mem_resources) - set(in_file_resources))
+
+
+class ShowResourceHandler(RequestHandler):
+    """Class which handles the / URL"""
+
+    def get(self, name):
+        '''
+        @summary: deals with GET request on /showresource
+        '''
+        print name
+        tmp = LOCK_MANAGER_INSTANCE.get_resource_as_dict(name)
+        if tmp is not None:
+            locks = tmp["locks"]
+            print locks
+            self.render("showresource.html", name=name, locks=locks)
+        else:
+            self.render("showresource.html", name=name, locks={})
+
+
+class RemoveResourceHandler(RequestHandler):
+    """Class which handles the / URL"""
+
+    def get(self):
+        '''
+        @summary: deals with GET request on /removeresource
+        '''
+        self.render("removeresource.html")
+
+    def post(self):
+        '''
+        @summary: deals with POST for removing a resource
+        '''
+        resource = self.get_argument('resource')
+        FILE_OPERATIONS.remove_resource(resource)
+        self.render("success.html", name=resource, operation="removed")
+        logging.info("Resource - %s - Removed" % resource)

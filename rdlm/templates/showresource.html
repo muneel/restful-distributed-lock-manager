@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div id="tableid">
+    <table class= "center " border="1">
+        <h2>{{name}}</h2>
+        <th>UID</th>
+        <th>Title</th>
+        <th>Active</th>
+        <th>Active/Wait Since</th>
+        <th>Active/Wait Expires</th>
+        <th>Lifetime</th>
+        <th>Wait</th>
+        {% for lock in locks %}
+        <tr>
+            <td>{{lock.get('uid')}}</td>
+            <td>{{lock.get('title')}}</td>
+            <td>{{lock.get('active')}}</td>
+            <td>{% if lock.get("active_since") %} {{lock.get("active_since")}}  {% else %} {{ lock.get("wait_since") }} {% end %}</td>
+            <td>{% if lock.get("active_expires") %} {{lock.get("active_since")}}  {% else %} {{ lock.get("wait_expires") }} {% end %}</td>
+            <td>{{lock.get('lifetime')}}</td>
+            <td>{{lock.get('wait')}}</td>
+        </tr>
+        {% end %}
+    </table>
+</div>
+
+{% end %}

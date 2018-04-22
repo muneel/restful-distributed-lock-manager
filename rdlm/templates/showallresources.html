@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div id="tableid">
+    <table class= "center " border="1">
+        <h2>Resources</h2>
+        <th>Resource Name</th>
+        <th>State</th>
+        {% for name, state in resources.iteritems() %}
+        <tr>
+            <td><a href="{{ "/showresource/" + name }}" > {{ name }}</a></td>
+            <td><font color="red">{{ state }}</font></td>
+        </tr>
+        {% end %}
+    </table>
+</div>
+
+{% end %}

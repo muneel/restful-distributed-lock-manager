@@ -53,5 +53,11 @@ setup(
         'Topic :: Software Development',
         'Topic :: Internet :: WWW/HTTP :: HTTP Servers',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content'
-    ]
+    ],
+
+    package_data={'rdlm.templates':['*'],
+                  'rdlm.static':['*']
+                  },
+    data_files=[('/etc/rdlm/', ['rdlm/rdlm.conf']),
+                ]
 )

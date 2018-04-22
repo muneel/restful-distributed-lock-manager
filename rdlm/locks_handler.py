@@ -11,6 +11,8 @@ import tornado.gen
 import tornado.ioloop
 from rdlm.lock import LOCK_MANAGER_INSTANCE
 import functools
+from resource_file_operations import FILE_OPERATIONS
+from conf_reader import CONF_READER
 
 
 class LocksHandler(RequestHandler):
@@ -53,7 +55,7 @@ class LocksHandler(RequestHandler):
         The method returns an HTTP/408 or an HTTP/409 in this case
         (depending if the delete is made by a timeout or an admin request)
         '''
-        if not(timeout):
+        if not (timeout):
             self.send_error(status_code=409, message="lock request deleted")
         else:
             self.send_error(status_code=408, message="lock request (wait) timeout")
@@ -69,9 +71,13 @@ class LocksHandler(RequestHandler):
             self.send_error(status_code=400, message="empty body")
             return
         lock = Lock.from_json(name, raw_body)
-        if not(lock):
+        if not (lock):
             self.send_error(status_code=400, message="invalid json body")
             return
+        elif CONF_READER.VALIDATE_RESOURCE is True:
+            if FILE_OPERATIONS.is_resource_valid(name) is False:
+                self.send_error(status_code=400, message="invalid resource, add resource before requesting lock")
+                return
         lock.set_callbacks(functools.partial(self.on_active_wrapper, name, lock),
                            self.on_delete_wrapper)
         LOCK_MANAGER_INSTANCE.add_lock(name, lock)
