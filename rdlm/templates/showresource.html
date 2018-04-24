@@ -18,7 +18,7 @@
             <td>{{lock.get('title')}}</td>
             <td>{{lock.get('active')}}</td>
             <td>{% if lock.get("active_since") %} {{lock.get("active_since")}}  {% else %} {{ lock.get("wait_since") }} {% end %}</td>
-            <td>{% if lock.get("active_expires") %} {{lock.get("active_since")}}  {% else %} {{ lock.get("wait_expires") }} {% end %}</td>
+            <td>{% if lock.get("active_expires") %} {{lock.get("active_expires")}}  {% else %} {{ lock.get("wait_expires") }} {% end %}</td>
             <td>{{lock.get('lifetime')}}</td>
             <td>{{lock.get('wait')}}</td>
         </tr>
