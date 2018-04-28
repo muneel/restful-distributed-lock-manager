@@ -6,16 +6,19 @@
     <form method="post">
     <table class= "center " border="1">
         <h2>Remove Resource</h2>
-        <tr>
-             <th>Resource Name</th>
-        </tr>
-        <tr>
-            <td>
-                <input type="text" name="resource"/>
-            </td>
-        </tr>
+			<tr>
+				<th>Resource Name</th>
+                <td>
+                <select name="resource" required="required">
+                    <option value=""></option>
+                    {% for name in resources %}
+                    <option value="{{ name }}">{{ name }}</option>
+                    {% end %}
+                </select>
+                </td>
+			</tr>
      <tr>
-         <td>
+         <td colspan="2">
             <input class="button" type="submit" value="REMOVE"/>
         </td>
      </tr>

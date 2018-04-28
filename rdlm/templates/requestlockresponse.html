@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div id="requestid">
+        <h3>Request added to queue</h3>
+        <h3>To check lock status click <a href="{{ "/showresource/" + name }}">Here</a> or goto 'Show Resources' then '{{ name }}'</h3>
+        <h3>UID = {{ uid }}</h3>
+</div>
+
+{% end %}

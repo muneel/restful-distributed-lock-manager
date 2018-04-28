@@ -25,6 +25,8 @@ from rdlm.hello_handler import AddResourceHandler
 from rdlm.hello_handler import ShowAllResourcesHandler
 from rdlm.hello_handler import ShowResourceHandler
 from rdlm.hello_handler import RemoveResourceHandler
+from rdlm.hello_handler import RequestLockHandler
+from rdlm.hello_handler import ReleaseLockHandler
 
 
 def on_every_second():
@@ -51,7 +53,9 @@ def get_app():
         tornado.web.URLSpec(r"/addresource", AddResourceHandler, name="addresources"),
         tornado.web.URLSpec(r"/showallresources", ShowAllResourcesHandler, name="showallresources"),
         tornado.web.URLSpec(r"/showresource/([a-zA-Z0-9]+)", ShowResourceHandler, name="showresource"),
-        tornado.web.URLSpec(r"/removeresource", RemoveResourceHandler, name="removeresource")
+        tornado.web.URLSpec(r"/removeresource", RemoveResourceHandler, name="removeresource"),
+        tornado.web.URLSpec(r"/requestlock", RequestLockHandler, name="requestlock"),
+        tornado.web.URLSpec(r"/releaselock", ReleaseLockHandler, name="releaselock")
     ]
     settings = dict(
         template_path = os.path.join(os.path.dirname(__file__), "templates"),

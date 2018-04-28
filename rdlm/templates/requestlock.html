@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div id="tableid">
+	<form method="post">
+		<table class= "center " border="1">
+			<h2>Request Resource Lock</h2>
+			<tr>
+				<th>Resource Name</th>
+                <td>
+                <select name="resource" required="required">
+                    <option value=""></option>
+                    {% for name in resources %}
+                    <option value="{{ name }}">{{ name }}</option>
+                    {% end %}
+                </select>
+
+                </td>
+			</tr>
+            <tr>
+				<th>Title</th>
+                <td><input type="text" required="required" name="title"/></td>
+			</tr>
+            <tr>
+				<th>Lifetime(sec)</th>
+                <td><input type="number" required="required" min="1" name="lifetime"/></td>
+			</tr>
+            <tr>
+				<th>Wait(sec)</th>
+                <td><input type="number" required="required"min="1" name="wait"/></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input class="button" type="submit" value="REQUEST"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+{% end %}

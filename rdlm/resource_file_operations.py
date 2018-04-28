@@ -28,6 +28,7 @@ class ResourceFileOperations(object):
         '''
         @summary: deals with getting resources from the file
         '''
+        logging.debug("Getting Resources from file")
         try:
             with open(CONF_READER.FILE_PATH, "a+") as f:
                 content = f.readlines()
@@ -40,6 +41,7 @@ class ResourceFileOperations(object):
         '''
         @summary: deals with removing resource from the file
         '''
+        logging.debug("Remove Resource - %s - from file" % name)
         content = self.get_resources()
         try:
             content.remove(name)
@@ -61,10 +63,12 @@ class ResourceFileOperations(object):
         @summary: appends resource to file
         '''
         content = self.get_resources()
+        logging.debug("Adding Resource - %s - to file" % name)
         if name not in content:
             with open(CONF_READER.FILE_PATH, "a+") as f:
                 f.write(name + "\n")
         else:
+            logging.debug("Resource - %s - exists in file" % name)
             pass
 
     def is_resource_valid(self, name):
@@ -73,8 +77,10 @@ class ResourceFileOperations(object):
         '''
         content = self.get_resources()
         if name not in content:
+            logging.debug("Resource - %s - Invalid" % name)
             return False
         else:
+            logging.debug("Resource - %s - Valid" % name)
             return True
 
     def __create_directory(self):
@@ -82,8 +88,10 @@ class ResourceFileOperations(object):
         @summary: checks and create directory if not present
         '''
         if os.path.exists(CONF_READER.DIR_PATH):
+            logging.debug("Directory - %s - Exists" % CONF_READER.DIR_PATH)
             pass
         else:
+            logging.debug("Creating directory - %s " % CONF_READER.DIR_PATH)
             cmd = "mkdir -p " + CONF_READER.DIR_PATH
             p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
             output = p.stdout.read()
@@ -94,8 +102,10 @@ class ResourceFileOperations(object):
         @summary: checks and create file if not present
         '''
         if os.path.exists(CONF_READER.FILE_PATH):
+            logging.debug("Resource File - %s - Exists" % CONF_READER.FILE_PATH)
             pass
         else:
+            logging.debug("Creating File - %s " % CONF_READER.FILE_PATH)
             cmd = "touch " + CONF_READER.FILE_PATH
             p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
             output = p.stdout.read()

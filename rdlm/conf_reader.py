@@ -22,8 +22,10 @@ class ConfReader(object):
 
     def __read_conf_file(self):
         try:
+            print "INFO - Reading - rdlm.conf"
             self.parser.read('/etc/rdlm/rdlm.conf')
         except Exception as e:
+            print "ERROR - Unable to read rdlm.con"
             logging.error(e)
 
     def __set_dir_path(self):

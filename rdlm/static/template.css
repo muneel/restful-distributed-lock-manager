@@ -11,7 +11,7 @@ body {
 }
 
 #tableid {
-  margin-top: 75px;
+  margin-top: 40px;
 }
 
 table {
@@ -70,9 +70,9 @@ form h3 {
 
 #main {
   margin: auto;
-  width: 666px;
+  width: 852px;
   height: 240px;
-  font-size: 26px;
+  font-size: 25px;
   font-weight: bold;
 }
 
@@ -89,8 +89,8 @@ form h3 {
 }
 
 #d1 {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-color: #428bca;
   color: white;
   display: table;
@@ -104,8 +104,8 @@ form h3 {
 }
 
 #d2 {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-color: #428bca;
   color: white;
   display: table;
@@ -119,8 +119,8 @@ form h3 {
 }
 
 #d3 {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-color: #428bca;
   color: white;
   display: table;
@@ -151,6 +151,48 @@ form h3 {
   vertical-align: middle;
 }
 
+#d4 {
+  width: 150px;
+  height: 150px;
+  background-color: #428bca;
+  color: white;
+  display: table;
+}
+
+#d4:hover {
+  background-color: #aaa;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+}
+
+#d4 span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#d5 {
+  width: 150px;
+  height: 150px;
+  background-color: #428bca;
+  color: white;
+  display: table;
+}
+
+#d5:hover {
+  background-color: #aaa;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+}
+
+#d5 span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .button {
   background-color: #428bca;
   border: none;
@@ -172,4 +214,12 @@ input[type=text] {
   -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
   -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+}
+
+td select {
+  font-size: 20px;
+}
+
+#requestid{
+text-align: center;
 }
